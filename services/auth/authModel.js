@@ -1,11 +1,12 @@
 var Action = require('../../config/Action');
+var encryptData = require('../../config/crypto');
 
 module.exports={
 
     getUser: function getUser(post, callback) {
-		var sql = "SELECT `email`, `actype` FROM `medicare_users` WHERE `email` = ? and `password` = ? ";
-		var params = [post.email, post.pwd];
-				console.log("1234-->");
+		encryptPass = encryptData.encrypt(post.pwd);
+		var sql = "SELECT `email`,`password`, `actype` FROM `medicare_users` WHERE `email` = ? and `password` = ? ";
+		var params = [post.email, encryptPass];
 
 		Action.exeSEL(sql, params, function (err, result) {
 			console.log(err);

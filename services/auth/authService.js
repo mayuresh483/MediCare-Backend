@@ -2,7 +2,6 @@ const authModel = require('../auth/authModel')
 
 exports.getUser = (req, res) => {
     post = req.body;
-    console.log("----------->",JSON.stringify(req.headers));
     if (!req.headers["authorization"]) {
         res.status(401).send({ "error": "An authorization header was not sent" });
     } else if (req.headers["authorization"] != process.env._API_KEY) {
