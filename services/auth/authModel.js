@@ -10,7 +10,7 @@ module.exports={
 
 		Action.exeSEL(sql, params, function (err, result) {
 			if (!err && result && result.data && result.status == "0") {
-                result.data = JSON.parse(result.data);
+				console.log(result.data);
 			}
 			return callback(err, result);
 		});
@@ -21,9 +21,9 @@ module.exports={
 		var sql = "INSERT INTO `medicare_users` (`fname`,`lname`,`email`,`password`, `actype`) VALUE(?,?,?,?,?) ";
 		var params = [post.fname,post.lname,post.email, encryptPass, 0];
 
-		Action.exeSEL(sql, params, function (err, result) {
+		Action.exeInsert(sql, params, function (err, result) {
 			if (!err && result && result.data && result.status == "0") {
-                result.data = JSON.parse(result.data);
+                console.log(result.data);
 			}
 			return callback(err, result);
 		});
